@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" ng-app="contactsApp">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+        <link rel="stylesheet" href="contacts.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        
+    </head>
+    <body>         
+        <div class="container-fluid">
+        <div ng-controller="contactsAppCtrl">
+            <h1>ContactsApp</h1>
+            <button ng-click="addContact()" class="btn btn-success">Add Contact</button>
+            
+            <div class="row">
+                <div class="col-sm-4 border rounded">
+                    <input type="text" placeholder="Search" ng-model="search" autofocus />
+                    <table class="table table-hover">
+                            <tr ng-repeat="contact in contactsList | orderBy: 'name' | filter : search">
+                                <td ng-click="selectContact(contact)">{{contact.name}}</td>
+                            </tr>
+                    </table>
+                </div>
+                <div class="col-sm-8 border rounded">
+                    <p ng-hide="selectedContact || addContactShow">Select a contact's name to view more details.</p>
+
+                    <section ng-show="selectShow">
+                        <h2>{{selectedContact.name}}</h2>
+                        <p>Email: {{selectedContact.email}}</p>
+                        <p>Location: {{selectedContact.location}}</p>
+                        <p>Primary Phone: {{selectedContact.primary}}</p>
+                        <button class="btn btn-primary" ng-click="editContact()">Edit</button>
+                        <button class="btn btn-danger" ng-click="deleteContact()">Delete</button>
+                    </section>
+
+                    <section ng-show="addContactShow">
+                        <h2>Add {{newContact.name}}</h2>
+                        <form class="form-group" name="addForm" ng-submit="submitAdd()">                            
+                                <label for="newName">Name:</label>
+                                <input class="form-control" name="name" id="newName" type="text" ng-model="newContact.name" />
+                                <label for="newName">Email:</label>
+                                <input class="form-control" name="email" id="newEmail" type="email" ng-model="newContact.email" />                          
+                                <label for="newName">Location:</label>
+                                <input class="form-control" name="location" id="newLocation" type="text" ng-model="newContact.location" />
+                                <label for="newName">Primary Phone:</label>
+                                <input class="form-control" name="primary" id="newPrimary" type="text" ng-model="newContact.primary" />
+                                <input type="submit" class="btn btn-primary" value="Done" />
+                        </form>
+                    </section>
+
+                    <section ng-show="editShow">
+                        <h2>Editing {{selectedContact.name}}</h2>
+                        <form class="form-group" name="editForm" ng-submit="submitChange()">
+                                <label for="editName">Name:</label>
+                                <input class="form-control" name="name" id="editName" type="text" ng-model="selectedContact.name" />
+                                <label for="editName">Email:</label>
+                                <input class="form-control" name="email" id="editEmail" type="email" ng-model="selectedContact.email" />
+                                <label for="editName">Location:</label>
+                                <input class="form-control" name="location" id="editLocation" type="text" ng-model="selectedContact.location" />
+                                <label for="editName">Primary Phone:</label>
+                                <input class="form-control" name="primary" id="editPrimary" type="text" ng-model="selectedContact.primary" />
+                                <input type="submit" class="btn btn-primary" value="Done" />
+                        </form>
+                    </section>
+                </div>
+            
+        </div>
+        </div>
+    </div>
+    <script src="contacts.js"></script>
+    </body>
+</html>
+
