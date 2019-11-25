@@ -4,4 +4,10 @@
 
 #titleA {
     color: black;
+    text-decoration: none;
+}
+
+.selectedBackground {
+    background-color: #ececec;
+    font-weight: bold;
 }

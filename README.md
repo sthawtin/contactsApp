@@ -10,7 +10,7 @@ To install the required Node dependencies, whilst in the same directory as packa
 npm install
 ```
 
-In the app.js file replace 'YOUR_URL' with the location and details of your running MongoDB instance:
+In the app.js file replace 'YOUR_URL' with the location and details of your running MongoDB instance.
 The resulting address will be set as 'mongodb://YOUR_URL/cadb'
 
 ```bash

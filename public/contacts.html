@@ -15,7 +15,7 @@
 <body>
     <div class="container-fluid">
         <header class="navbar">
-            <a href="#!/">
+            <a id="titleA" href="#!/">
                 <h1>ContactsApp</h1>
             </a>
             <a href="#!/add"><button id="addButton" class="btn btn-success">Add Contact</button></a>
@@ -27,7 +27,7 @@
                 <input class="form-control" id="searchForm" type="text" placeholder="Search" ng-model="search"
                     autofocus />
                 <table class="table table-hover">
-                    <tr ng-repeat="contact in contactsList | orderBy: 'name' | filter : search">
+                    <tr ng-class="{ 'selectedBackground' : contact._id === selectedContact._id}" ng-repeat="contact in contactsList | orderBy: 'name' | filter : search">
                         <td ng-click="selectContact(contact)">{{contact.name}}</td>
                     </tr>
                 </table>
