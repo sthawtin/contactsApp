@@ -1,0 +1,20 @@
+<h2>Add {{newContact.name}}</h2>
+<form class="form-group" name="addForm" ng-submit="submitAdd()">
+    <div class="form-group">
+        <label for="newName">Name:</label>
+        <input class="form-control" name="name" id="newName" type="text" ng-model="newContact.name" />
+    </div>
+    <div class="form-group">
+        <label for="newEmail">Email:</label>
+        <input class="form-control" name="email" id="newEmail" type="email" ng-model="newContact.email" />
+    </div>
+    <div class="form-group">
+        <label for="newLocation">Location:</label>
+        <input class="form-control" name="location" id="newLocation" type="text" ng-model="newContact.location" />
+    </div>
+    <div class="form-group">
+        <label for="newPrimary">Primary Phone:</label>
+        <input class="form-control" name="primary" id="newPrimary" type="text" ng-model="newContact.primary" />
+    </div>
+    <input type="submit" class="btn btn-primary" value="Done" />
+</form>

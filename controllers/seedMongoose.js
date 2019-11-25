@@ -1,7 +1,7 @@
 /* Following code creates and populates a MongoDB database using Mongoose. 
 Requires MongoDB to be installed and running on local machine, Node to be installed, and the mongoose package to be installed via npm.*/
 
-module.exports = function() {
+module.exports = function () {
     const Contact = require('../models/Contact.js');
 
     const contactsJSON = [
@@ -15,9 +15,9 @@ module.exports = function() {
         { name: 'Dennis Ritchie', email: 'dennis@cprogramming.com', location: 'United States', primary: '012-589-1651' },
         { name: 'Ken Thompson', email: 'ken@unix.net', location: 'United States', primary: '6434030340' },
         { name: 'Steve Jobs', email: 'steve@apple.com', location: 'United States', primary: '805-110-9825' }
-      ];
-    
-    Contact.insertMany(contactsJSON, function(err, result) {
+    ];
+
+    Contact.insertMany(contactsJSON, function (err, result) {
         if (err) throw err;
         console.log("cadb database created.")
         console.log("contacts collection created.")
