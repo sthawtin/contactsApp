@@ -23,8 +23,11 @@ const app = express();
 // Set port to 80 if not found in process.env file
 const PORT = process.env.PORT || 80;
 
+// Enter the details of your MongoDB instance
+const MONGO = 'localhost:27017'
+
 // Point Mongoose to the url of running MongoDB server and database
-mongoose.connect('mongodb://localhost:27017/cadb', { useNewUrlParser: true });
+mongoose.connect('mongodb://' + MONGO + '/cadb', { useNewUrlParser: true });
 
 // Set path to directory containing static files. 
 app.use(express.static(path.join(__dirname, 'public')));
