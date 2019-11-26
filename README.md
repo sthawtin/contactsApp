@@ -25,7 +25,7 @@ To start the server run:
 node app
 ```
 
-## Features
+## Features
 * Displaying contacts
 * Add a contact
 * Remove a contact
