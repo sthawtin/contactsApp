@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="contacts.css">
+    <style>
+            h1,
+            h2 {
+                color: black;
+            };
+        </style>
+    <title>User Dashboard | ContactsApp</title>
+</head>
+
+<body class="text-center">
+
+    <div>
+        <a id="titleA" href="/">
+            <h1>ContactsApp</h1>
+        </a>
+        <h2>User Dashboard</h2>
+    </div>
+
+    <div>
+
+            <% if (!user) { %>
+                <a href="/userLogin/register"><button class="btn btn-primary">Register</button></a>
+            <% } %>
+            <% if (!user) { %>
+                <a href="/userLogin/login"><button class="btn btn-primary">Log in</button></a>
+            <% } %>
+            <% if (user) { %>
+                <a href="/userLogin/logout"><button class="btn btn-primary">Log out</button></a>
+            <% } %>
+
+
+        <% if (user) { %>
+        <p>You are logged in as user: <%= user.username %></p>
+        <% } %>
+    </div>
+
+</body>
+
+</html>

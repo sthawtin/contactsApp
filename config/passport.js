@@ -18,8 +18,6 @@ module.exports = function () {
                         return cb(null, false);
                     };
                 });
-                // if (user.password != password) { return cb(null, false); }
-                // return cb(null, user);
             });
         }
     ));

@@ -12,7 +12,7 @@ const htmlController = require('./controllers/htmlController')
 const apiController = require('./controllers/apiController')
 const userLogin = require('./controllers/userLogin');
 
-// Import Mongoose database model for Contacts and User Login
+// Import Mongoose database model
 const Contact = require('./models/Contact.js');
 
 // Create Express server
@@ -51,8 +51,8 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 // Set Views Engine and path
-app.set('views', __dirname + 'views')
-app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 // Import controllers to serve static html file and the API
 app.use('/', htmlController);
