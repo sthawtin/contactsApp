@@ -39,7 +39,7 @@ node app
 * Persistently stored data
 * Basic backend API
 
-* I have implemented a basic and functioning register and login facility, separate from the rest of the app, the code of which can be found in the login folder. However, owing to time constraints I have not integrated it with the app, and I have yet to encrypt passwords.
+* I have implemented a basic and functioning register and login facility, separate from the rest of the app, the code of which can be found in the login folder. However, owing to time constraints I have not yet integrated it with the rest of the app, and I have yet to integrate the encryption of passwords.
 
 ## Notes
 ### AngularJS
