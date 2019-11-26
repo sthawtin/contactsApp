@@ -38,8 +38,7 @@ node app
 
 * Persistently stored data
 * Basic backend API
-
-* I have implemented a basic and functioning register and login facility, separate from the rest of the app, the code of which can be found in the login folder. However, owing to time constraints I have not yet integrated it with the rest of the app, and I have yet to integrate the encryption of passwords.
+* A rudimental user dashboard with register, login, and logout facilities. User passwords are not stored in plain text. Is not otherwise integrated into the rest of the app, and does not make use of AngularJS. Still much to be improved.
 
 ## Notes
 ### AngularJS
