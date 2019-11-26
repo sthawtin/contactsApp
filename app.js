@@ -5,11 +5,12 @@ const mongoose = require('mongoose'); // MongoDB ODM
 const bodyParser = require('body-parser'); // Middleware to parse body requests
 const seedDatabase = require('./controllers/seedMongoose'); // Custom module to seed database with data
 const session = require('express-session');
+const passport = require('passport');
 
 // Import controllers
 const htmlController = require('./controllers/htmlController')
 const apiController = require('./controllers/apiController')
-const userLogin = require('/controllers/userLogin.js');
+const userLogin = require('./controllers/userLogin');
 
 // Import Mongoose database model for Contacts and User Login
 const Contact = require('./models/Contact.js');
@@ -56,6 +57,7 @@ app.set('view engine', 'ejs')
 // Import controllers to serve static html file and the API
 app.use('/', htmlController);
 app.use('/api', apiController);
+app.use('/userLogin', userLogin);
 
 // Check to see if the database is empty. If it is empty seed with data.
 Contact.find({}, (err, results) => {

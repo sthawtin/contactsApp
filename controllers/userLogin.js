@@ -1,7 +1,8 @@
-const expres = require('express');
+const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const bcrypt = require('bcrypt');
+const path = require('path');
 
 let User = require('../models/User');
 
@@ -13,21 +14,24 @@ router.get('/register', (req, res) => {
 router.post('/register', (req, res) => {
     let newUser = new User({ username: req.body.username, password: req.body.password });
 
-    bcrypt.hash(newUser.password, salt, (err, hash) => {
-        if (err) {
-            console.log(err);
-        }
-        newUser.password = hash;
-        newUser.save((err) => {
-            if (err) throw err;
-            else {
-                req.login(newUser, function (err) {
-                    if (err) throw err;
-                    return res.redirect('back')
-                });
-            };
+    bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) {
+                console.log(err);
+            }
+            newUser.password = hash;
+            newUser.save((err) => {
+                if (err) throw err;
+                else {
+                    req.login(newUser, function (err) {
+                        if (err) throw err;
+                        return res.redirect('back')
+                    });
+                };
+            });
         });
     });
+
 
 
 });
@@ -38,9 +42,9 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/login',
-    passport.authenticate('local', { failureRedirect: '/login'}),
+    passport.authenticate('local', { failureRedirect: '/failure' }),
     (req, res) => {
-        res.redirect('/login')
+        res.redirect('/')
     });
 
 router.get('/logout', (req, res) => {
@@ -56,8 +60,6 @@ router.get('/users', (req, res) => {
 });
 
 router.get('/test', (req, res) => {
-    res.sendFile(path.join(__dirname, '..//public/login.html'));
-
     res.render('home', { user: req.user })
 });
 
