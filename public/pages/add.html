@@ -3,19 +3,19 @@
     <form class="form-group" name="addForm" ng-submit="submitAdd()">
         <div class="form-group">
             <label for="newName">Name:</label>
-            <input class="form-control" name="name" id="newName" type="text" ng-model="newContact.name" />
+            <input class="form-control" name="name" id="newName" type="text" ng-model="newContact.name" required />
         </div>
         <div class="form-group">
             <label for="newEmail">Email:</label>
-            <input class="form-control" name="email" id="newEmail" type="email" ng-model="newContact.email" />
+            <input class="form-control" name="email" id="newEmail" type="email" ng-model="newContact.email" required />
         </div>
         <div class="form-group">
             <label for="newLocation">Location:</label>
-            <input class="form-control" name="location" id="newLocation" type="text" ng-model="newContact.location" />
+            <input class="form-control" name="location" id="newLocation" type="text" ng-model="newContact.location" required />
         </div>
         <div class="form-group">
             <label for="newPrimary">Primary Phone:</label>
-            <input class="form-control" name="primary" id="newPrimary" type="text" ng-model="newContact.primary" />
+            <input class="form-control" name="primary" id="newPrimary" type="text" ng-model="newContact.primary" required />
         </div>
         <input type="submit" class="btn btn-primary" value="Done" />
     </form>
