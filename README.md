@@ -45,14 +45,14 @@ node app
 ### AngularJS
 AngularJS (and front-end frameworks in general) was 100% new to me before I started. I have tried to learn as much as quickly as possible, but I still have a lot to get my head around.
 
-My current AngularJS code, found in public/contacts.js and public/contacts.html, improves upon earlier and much messier implementations. My earlier versions did not make use of routing, ng-view, and multiple controllers as the latest iterations have.
+My current AngularJS code, found in public/contacts.js and public/contacts.html, improves upon earlier and much messier implementations (found in the archive folder). My earlier versions did not make use of routing, ng-view, and multiple controllers as the latest iterations have.
 
 I believe I should be making more use of custom services and factories, especially to share data between controllers. In the end, I settled with sharing data via the $routeScope, which probably isn't ideal or best practice.
 
 ### API and Database
 I spent time developing a separate fairly rudimental API using Node and Express. One is able to interact with the API (e.g. adding/editing/deleting contacts) exclusively via URLs and HTTP methods, independently of the front-end. 
 
-I have yet to include much data validation, either on the front end (HTML or AngularJS) or in the API.
+I have yet to include much data validation, either on the front end (beyond basic HTML require attributes) or in the API.
 
 Ideally I would also like to add some form of formatting of phone numbers according to location (e.g. prefixing +44 to UK numbers, and adding or removing spacing or hyphens as appropriate).
 
