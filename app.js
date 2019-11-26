@@ -20,8 +20,8 @@ const Contact = require('./models/Contact.js');
 // Create Express server
 const app = express();
 
-// Set port to 80 if not found in process.env file
-const PORT = process.env.PORT || 80;
+// Set port to 8080 if not found in process.env file
+const PORT = process.env.PORT || 8080;
 
 // Enter the details of your MongoDB instance
 const MONGO = 'localhost:27017'
