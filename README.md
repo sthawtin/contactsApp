@@ -31,14 +31,16 @@ node app
 * Remove a contact
 * Edit a contact
 
+### Bonus features
+* Persistently stored data
+* Basic backend API
+* A quick rudimental user dashboard with register, login, and logout facilities. User passwords are not stored in plain text. Is not otherwise integrated into the rest of the app, and does not make use of AngularJS. Still much to be improved.
+
 ### Extra features
 * Automatically sorted contacts list
 * Basic search facility (filter)
 * Basic responsive design
 
-* Persistently stored data
-* Basic backend API
-* A quick rudimental user dashboard with register, login, and logout facilities. User passwords are not stored in plain text. Is not otherwise integrated into the rest of the app, and does not make use of AngularJS. Still much to be improved.
 
 ## Notes
 ### AngularJS
