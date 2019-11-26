@@ -50,7 +50,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 // Set Views Engine and path
-app.set('views', __dirname + '/views')
+app.set('views', __dirname + 'views')
 app.set('view engine', 'ejs')
 
 // Import controllers to serve static html file and the API
