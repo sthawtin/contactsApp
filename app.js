@@ -4,12 +4,14 @@ const path = require('path'); // Utility to work with file and directory path (u
 const mongoose = require('mongoose'); // MongoDB ODM
 const bodyParser = require('body-parser'); // Middleware to parse body requests
 const seedDatabase = require('./controllers/seedMongoose'); // Custom module to seed database with data
+const session = require('express-session');
 
 // Import controllers
 const htmlController = require('./controllers/htmlController')
 const apiController = require('./controllers/apiController')
+const userLogin = require('/controllers/userLogin.js');
 
-// Import Mongoose database model for Contacts
+// Import Mongoose database model for Contacts and User Login
 const Contact = require('./models/Contact.js');
 
 // Create Express server
@@ -32,6 +34,24 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Parse application/json request body
 app.use(bodyParser.json());
+
+// Set Express session middleware settings
+app.use(session({ 
+    secret: 'keyboard cat', 
+    resave: false, 
+    saveUninitialized: false
+}));
+
+// Bring in Passport config
+require('./config/passport')(passport);
+
+// Use Passport middleware
+app.use(passport.initialize())
+app.use(passport.session())
+
+// Set Views Engine and path
+app.set('views', __dirname + '/views')
+app.set('view engine', 'ejs')
 
 // Import controllers to serve static html file and the API
 app.use('/', htmlController);
