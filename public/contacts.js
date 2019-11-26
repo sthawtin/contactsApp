@@ -27,27 +27,21 @@ app.config(function ($routeProvider) {
 // Controllers
 
 // Home controller
-app.controller('homeController', ['$scope', function ($scope) {
-    // currently empty
+app.controller('homeController', ['$scope', '$rootScope', function ($scope, $rootScope) {
+    $rootScope.selectedContact = {}; // Empties selectedContact (for contact list formatting)
 }]);
 
 // View Contact controller
 app.controller('viewController', ['$scope', '$rootScope', '$http', '$location',
     function ($scope, $rootScope, $http, $location) {
 
-        // deleteContact function is called as user clicks on the delete button on the Contact View page
         $scope.deleteContact = function () {
-
-            // Confirms with user whether they wish to delete
             if (confirm("Delete this contact?")) {
-
-                // DELETE request to API, deletes currently selected Contact
                 $http.delete('/api/contacts/' + $rootScope.selectedContact._id).then(function (response) {
-
-                    // Immediately call an anonymous function, which changes location route path
+                    // Immediately called function, changes location route path
                     (function () { $location.path('/'); })();
 
-                    // Requests updated contacts list, post-delete, and updates contactsList object with response
+                    // Get updated contacts list, post-delete
                     $http.get('/api/contacts').then(function (response) {
                         $rootScope.contactsList = response.data;
                     });
@@ -60,10 +54,10 @@ app.controller('viewController', ['$scope', '$rootScope', '$http', '$location',
 app.controller('editController', ['$scope', '$rootScope', '$http', '$location',
     function ($scope, $rootScope, $http, $location) {
 
-        // submitChange function is called when user clicks on the Done button when editing a Contact
+        // Submit Edit Contact changes
         $scope.submitChange = function () {
 
-            // Stores new form data in a new object, inheriting old data from already existing Contact object.
+            // Creates new object, with edited or untouched contact data present form fields (via binding)
             $scope.updatedEntry = {
                 id: $rootScope.selectedContact._id,
                 name: $rootScope.selectedContact.name,
@@ -72,8 +66,8 @@ app.controller('editController', ['$scope', '$rootScope', '$http', '$location',
                 primary: $rootScope.selectedContact.primary
             };
 
-            // POST request to API. Updates existing object with new properties. 
-            // If sucessful retrieves updated contacts objects from DB and updates contactList variable.
+            // POST request submitting Edits to API/DB. Updates existing object with new object. 
+            // If sucessful retrieves updated contacts list
             $http({
                 method: 'POST',
                 url: '/api/contacts',
@@ -85,8 +79,8 @@ app.controller('editController', ['$scope', '$rootScope', '$http', '$location',
             }, function (error) {
                 console.error(error);
             });
-            // Immediately calling an anonymous function, changing route and view. 
-            // Returns user back to viewing edited contact.
+ 
+            // Immediately called function: changes location route path and view (to view recently edited contact)
             (function () { $location.path('/view'); })();
         };
     }]);
@@ -95,10 +89,12 @@ app.controller('editController', ['$scope', '$rootScope', '$http', '$location',
 app.controller('addController', ['$scope', '$rootScope', '$http', '$location',
     function ($scope, $rootScope, $http, $location) {
 
-        // submitAdd function is called when a user clicks Done on the Add Contact page.
+        $rootScope.selectedContact = {}; // Empties selectedContact (for contact list formatting)
+
+        // submit new Added Contact
         $scope.submitAdd = function () {
 
-            // A new Contact object is created and populated with form data (AngularJS binds form input data).
+            // New object created and filled with entered form data (via binding)
             $scope.newEntry = {
                 name: $scope.newContact.name,
                 email: $scope.newContact.email,
@@ -106,15 +102,17 @@ app.controller('addController', ['$scope', '$rootScope', '$http', '$location',
                 primary: $scope.newContact.primary
             };
 
-            // POST request to API, adding a new Contact object to DB.
-            // If successful updates selectedContact variable to the new object's id, pulled from response,
-            // and retrieves updated contacts objects from DB and updates contactList variable.
+            // POST sending new Added Contact to API/DB. 
+            // If sucessful retrieves updated contacts list
             $http({
                 method: 'POST',
                 url: '/api/contacts',
                 data: JSON.stringify($scope.newEntry)
             }).then(function (success) {
+                
+                // retrieve and "select" newly Added Contact, in order to transition automatically into viewing it
                 $rootScope.selectedContact = success.data;
+                
                 $http.get('/api/contacts').then(function (response) {
                     $rootScope.contactsList = response.data;
                 });
@@ -122,8 +120,7 @@ app.controller('addController', ['$scope', '$rootScope', '$http', '$location',
                 console.error(err);
             });
 
-            // Immediately calling an anonymous function, changing route and view. 
-            // User redirected to view newly added contact.
+            // Immediately called function: changes location route path and view (to view newly added contact)
             (function () { $location.path('/view'); })();
         };
     }]);
@@ -131,18 +128,19 @@ app.controller('addController', ['$scope', '$rootScope', '$http', '$location',
 // Contacts List Controller
 app.controller('contactsController', ['$scope', '$rootScope', '$http', '$location',
     function ($scope, $rootScope, $http, $location) {
+        
         // Retrieves contacts from API, assigns response to contactsList object.
         $http.get('/api/contacts').then(function (response) {
             $rootScope.contactsList = response.data;
         });
 
-        // selectContact function is invoked whenever a user selects a user from the contacts list.
-        // selectedContact variable is assigned to selected contact, guiding which contact object is 
-        // later viewed, edited, or deleted by the user.
+        /* selectContact function is invoked whenever a user selects a user from the contacts list.
+           selectedContact variable is assigned and reassigned to a selected contact, guiding which contact object is 
+           subsequently viewed, edited, or deleted by the user at any one time. */
         $scope.selectContact = function (contact) {
             $rootScope.selectedContact = contact;
 
-            // Immediately call anonymous function, changing location route path to view selected Contact.
+            // Immediately called function: changes location route path and view (to view selected contact)
             (function () { $location.path('/view'); })();
         };
     }]);

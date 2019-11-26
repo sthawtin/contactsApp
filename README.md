@@ -54,4 +54,6 @@ I spent time developing a separate fairly rudimental API using Node and Express.
 
 I have yet to include much data validation, either on the front end (HTML or AngularJS) or in the API.
 
+Ideally I would also like to add some form of formatting of phone numbers according to location (e.g. prefixing +44 to UK numbers, and adding or removing spacing or hyphens as appropriate).
+
 Data is persistenly stored in and retrieved from a MongoDB database.
